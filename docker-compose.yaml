@@ -1,0 +1,9 @@
+version: '3'
+services:
+  syncthing:
+    image: personal-cms:latest
+    container_name: personal-cms
+    volumes:
+      - ./content:/var/content
+    ports:
+      - 3000:3000
