@@ -6,7 +6,7 @@ At the moment I am creating MVP so there is goint to be no dashboard, only REST.
 
 ## Roadmap
 
-- [ ] Create MVP - REST API that takes directory and returns markdown files as articles
+- [x] Create MVP - REST API that takes directory and returns markdown files as articles
 - [ ] Create dashboard to handle file actions via browser
 - [ ] If anyone will ever want to use that (that means if somone will ask for such option) plan users system with diffrent roles
 

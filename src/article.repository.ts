@@ -9,7 +9,7 @@ export class ArticleRepository {
   private contentDir: string;
 
   constructor() {
-    this.contentDir = process.env.CONTENT_DIR || './content';
+    this.contentDir = `${process.env.CONTENT_DIR || './content'}/articles`;
   }
 
   getArtciles(pagination: Page): Paginated<string> {
