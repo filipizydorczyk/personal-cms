@@ -29,4 +29,20 @@ export class ArticleRepository {
 
     return null;
   }
+
+  getMetadataByName(name: string): Record<string, any> | null {
+    const file = `${this.contentDir}/${name}.json`;
+
+    if (existsSync(file)) {
+      const value = readFileSync(file, 'utf-8');
+
+      try {
+        return JSON.parse(value);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    return null;
+  }
 }

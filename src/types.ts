@@ -14,5 +14,5 @@ export type Paginated<T> = {
 export type ArticleDTO = {
   name: string;
   content: string;
-  metadata?: unknown;
+  metadata: Record<string, any>;
 };
