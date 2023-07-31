@@ -6,11 +6,18 @@ import { MediaController } from './media.controller';
 import { MediaRepository } from './media.repository';
 import { MediaService } from './media.service';
 import { ImageMiddleware } from './image.middleware';
+import { MarkdownService } from './markdown.service';
 
 @Module({
   imports: [],
   controllers: [ArticleController, MediaController],
-  providers: [ArticleService, MediaService, ArticleRepository, MediaRepository],
+  providers: [
+    ArticleService,
+    MediaService,
+    MarkdownService,
+    ArticleRepository,
+    MediaRepository,
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

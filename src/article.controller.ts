@@ -8,10 +8,14 @@ import {
 import { ArticleService } from './article.service';
 import { ArticleDTO, Paginated } from './types';
 import { DEFAULT_PAGE_SIZE } from './contants';
+import { MarkdownService } from './markdown.service';
 
 @Controller('/api/v1/articles')
 export class ArticleController {
-  constructor(private readonly articleService: ArticleService) {}
+  constructor(
+    private readonly articleService: ArticleService,
+    private readonly markdownService: MarkdownService,
+  ) {}
 
   @Get('/')
   getArticles(@Query('page') page: string): Paginated<string> {
@@ -29,6 +33,9 @@ export class ArticleController {
     if (article === null) {
       throw new BadRequestException('Invalid article');
     }
-    return article;
+    return {
+      ...article,
+      content: this.markdownService.parseToHtml(article.content),
+    };
   }
 }
