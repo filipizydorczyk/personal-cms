@@ -11,8 +11,12 @@ export type Paginated<T> = {
   content: T[];
 };
 
-export type ArticleDTO = {
+export type ArticleShortDTO = {
   name: string;
-  content: string;
   metadata: Record<string, any>;
+};
+
+
+export type ArticleDTO = ArticleShortDTO & {
+  content: string;
 };

@@ -6,7 +6,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { ArticleDTO, Paginated } from './types';
+import { ArticleDTO, ArticleShortDTO, Paginated } from './types';
 import { DEFAULT_PAGE_SIZE } from './contants';
 import { MarkdownService } from './markdown.service';
 
@@ -18,7 +18,7 @@ export class ArticleController {
   ) {}
 
   @Get('/')
-  getArticles(@Query('page') page: string): Paginated<string> {
+  getArticles(@Query('page') page: string): Paginated<ArticleShortDTO> {
     const articles = this.articleService.getArtciles({
       size: DEFAULT_PAGE_SIZE,
       page: Number(page) || 0,
