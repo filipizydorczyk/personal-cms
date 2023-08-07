@@ -21,7 +21,7 @@ export class ArticleController {
   getArticles(@Query('page') page: string): Paginated<ArticleShortDTO> {
     const articles = this.articleService.getArtciles({
       size: DEFAULT_PAGE_SIZE,
-      page: Number(page) || 0,
+      page: Number(page) || 1,
     });
     return articles;
   }
