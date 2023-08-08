@@ -10,7 +10,7 @@ export class MediaController {
     const media = this.mediaService.getMediaByName(name);
 
     if (media === null) {
-      throw new BadRequestException('Invalid article');
+      throw new BadRequestException('Invalid media');
     }
     return media;
   }
