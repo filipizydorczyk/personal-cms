@@ -1,3 +1,5 @@
+export type FileType = 'image/png' | 'image/gif' | 'image/jpeg';
+
 export type Page = {
   page: number;
   size: number;
@@ -16,7 +18,11 @@ export type ArticleShortDTO = {
   metadata: Record<string, any>;
 };
 
-
 export type ArticleDTO = ArticleShortDTO & {
   content: string;
+};
+
+export type ConfigCMS = {
+  git: string | null;
+  content: string | null;
 };

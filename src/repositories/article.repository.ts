@@ -1,15 +1,18 @@
 import { readdirSync, existsSync, readFileSync } from 'fs';
 import { extname, parse } from 'path';
 import { Injectable } from '@nestjs/common';
-import { Page, Paginated } from './types';
-import { paginated } from './utils';
+import { Page, Paginated } from '../types';
+import { paginated } from '../utils';
+import { ConfigService } from '../services/config.service';
 
 @Injectable()
 export class ArticleRepository {
   private contentDir: string;
 
-  constructor() {
-    this.contentDir = `${process.env.CONTENT_DIR || './content'}/articles`;
+  constructor(private readonly configService: ConfigService) {
+    this.contentDir = `${
+      this.configService.get('content') || './content'
+    }/articles`;
   }
 
   getArtciles(pagination: Page): Paginated<string> {

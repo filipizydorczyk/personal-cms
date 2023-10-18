@@ -1,4 +1,4 @@
-import { Page, Paginated } from './types';
+import { FileType, Page, Paginated } from './types';
 
 /**
  * Takes list and turns it into paginated object
@@ -38,8 +38,6 @@ export const decodeStringifiedBody = (body: string): unknown => {
     return body;
   }
 };
-
-export type FileType = 'image/png' | 'image/gif' | 'image/jpeg';
 
 /**
  * This is very basic implementation of checking type of file inside of Buffer

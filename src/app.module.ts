@@ -1,20 +1,26 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
-import { ArticleController } from './article.controller';
-import { ArticleService } from './article.service';
-import { ArticleRepository } from './article.repository';
-import { MediaController } from './media.controller';
-import { MediaRepository } from './media.repository';
-import { MediaService } from './media.service';
-import { ImageMiddleware } from './image.middleware';
-import { MarkdownService } from './markdown.service';
+import { ArticleController } from './controllers/article.controller';
+import { ContentService } from './services/content.service';
+import { ArticleRepository } from './repositories/article.repository';
+import { MediaController } from './controllers/media.controller';
+import { MediaRepository } from './repositories/media.repository';
+import { MediaService } from './services/media.service';
+import { ImageMiddleware } from './middlewares/image.middleware';
+import { MarkdownService } from './services/markdown.service';
+import { ConfigService } from './services/config.service';
+import { ConfigRepository } from './repositories/config.repository';
+import { GitService } from './services/git.service';
 
 @Module({
   imports: [],
   controllers: [ArticleController, MediaController],
   providers: [
-    ArticleService,
+    ConfigService,
+    ContentService,
     MediaService,
+    GitService,
     MarkdownService,
+    ConfigRepository,
     ArticleRepository,
     MediaRepository,
   ],

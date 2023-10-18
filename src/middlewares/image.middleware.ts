@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { decodeStringifiedBody, getBufferFileType } from './utils';
+import { decodeStringifiedBody, getBufferFileType } from '../utils';
 
 @Injectable()
 export class ImageMiddleware implements NestMiddleware {

@@ -1,6 +1,6 @@
 {
   "name": "personal-cms",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "author": "",
   "private": true,
@@ -13,7 +13,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "start:docker": "CONTENT_DIR=/var/content node dist/main",
+    "start:docker": "CONFIG=/etc/personalcms/config.json node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "dependencies": {
@@ -22,7 +22,8 @@
     "@nestjs/platform-express": "^10.0.0",
     "commonmark": "^0.30.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "simple-git": "^3.20.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

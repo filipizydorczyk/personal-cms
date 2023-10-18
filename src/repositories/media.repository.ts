@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { existsSync, readFileSync } from 'fs';
+import { ConfigService } from '../services/config.service';
 
 @Injectable()
 export class MediaRepository {
   private mediaDir: string;
 
-  constructor() {
-    this.mediaDir = `${process.env.CONTENT_DIR || './content'}/media`;
+  constructor(private readonly configService: ConfigService) {
+    this.mediaDir = `${this.configService.get('content') || './content'}/media`;
   }
 
   getMediaByName(name: string): Buffer | null {

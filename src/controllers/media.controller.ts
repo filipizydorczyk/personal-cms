@@ -1,13 +1,13 @@
 import { BadRequestException, Controller, Get, Param } from '@nestjs/common';
-import { MediaService } from './media.service';
+import { ContentService } from '../services/content.service';
 
 @Controller('/api/v1/media')
 export class MediaController {
-  constructor(private readonly mediaService: MediaService) {}
+  constructor(private readonly contentService: ContentService) {}
 
   @Get('/:name')
   getMediaByName(@Param('name') name: string): Buffer {
-    const media = this.mediaService.getMediaByName(name);
+    const media = this.contentService.getMediaByName(name);
 
     if (media === null) {
       throw new BadRequestException('Invalid media');
