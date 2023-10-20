@@ -7,7 +7,7 @@ export class MediaRepository {
   private mediaDir: string;
 
   constructor(private readonly configService: ConfigService) {
-    this.mediaDir = `${this.configService.get('content') || './content'}/media`;
+    this.mediaDir = `${this.configService.get('content')}/media`;
   }
 
   getMediaByName(name: string): Buffer | null {

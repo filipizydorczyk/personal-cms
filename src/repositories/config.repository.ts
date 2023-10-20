@@ -4,7 +4,8 @@ import { ConfigCMS } from '../types';
 
 const DEFAULT_CONFIG: ConfigCMS = {
   git: null,
-  content: '/var/content',
+  content:
+    process.env.NODE_ENV === 'development' ? './content' : '/var/content',
 };
 
 @Injectable()
@@ -18,6 +19,8 @@ export class ConfigRepository {
 
     const config = JSON.parse(readFileSync(path, 'utf-8'));
     const final: ConfigCMS = { ...DEFAULT_CONFIG, ...config };
+
+    console.log(final);
 
     return final;
   }

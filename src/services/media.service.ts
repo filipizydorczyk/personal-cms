@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MediaRepository } from '../repositories/media.repository';
+import { MediaRepository } from 'src/repositories/media.repository';
 
 @Injectable()
 export class MediaService {

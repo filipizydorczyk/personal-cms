@@ -1,14 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ArticleRepository } from '../repositories/article.repository';
 import { ArticleDTO, ArticleShortDTO, Page, Paginated } from '../types';
-import { MediaRepository } from '../repositories/media.repository';
 
 @Injectable()
-export class ContentService {
-  constructor(
-    private readonly articleRepository: ArticleRepository,
-    private readonly mediaRepository: MediaRepository,
-  ) {}
+export class ArticleService {
+  constructor(private readonly articleRepository: ArticleRepository) {}
 
   getArtciles(page: Page): Paginated<ArticleShortDTO> {
     const result = this.articleRepository.getArtciles(page);
@@ -34,9 +30,5 @@ export class ContentService {
     }
 
     return null;
-  }
-
-  getMediaByName(name: string): Buffer | null {
-    return this.mediaRepository.getMediaByName(name);
   }
 }

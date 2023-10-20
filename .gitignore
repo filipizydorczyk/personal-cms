@@ -37,3 +37,4 @@ lerna-debug.log*
 # CMS
 
 content
+cms.config.json

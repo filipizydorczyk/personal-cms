@@ -10,9 +10,7 @@ export class ArticleRepository {
   private contentDir: string;
 
   constructor(private readonly configService: ConfigService) {
-    this.contentDir = `${
-      this.configService.get('content') || './content'
-    }/articles`;
+    this.contentDir = `${this.configService.get('content')}/articles`;
   }
 
   getArtciles(pagination: Page): Paginated<string> {
