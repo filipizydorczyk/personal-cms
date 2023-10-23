@@ -20,8 +20,6 @@ export class ConfigRepository {
     const config = JSON.parse(readFileSync(path, 'utf-8'));
     const final: ConfigCMS = { ...DEFAULT_CONFIG, ...config };
 
-    console.log(final);
-
     return final;
   }
 
