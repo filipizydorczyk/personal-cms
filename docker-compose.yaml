@@ -5,6 +5,6 @@ services:
     container_name: personal-cms
     volumes:
       - ./content:/var/content
-      - ./config.json:/etc/personal.cms.d/config.json
+      - ./personal.cms.d:/etc/personal.cms.d
     ports:
       - 3000:3000
