@@ -1,15 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import simpleGit, { SimpleGit } from 'simple-git';
 import { ConfigService } from './config.service';
-import { readdirSync } from 'fs';
+import { readdirSync, existsSync } from 'fs';
 
 @Injectable()
 export class GitService {
-  private git: SimpleGit;
+  private static readonly LOG = new Logger(GitService.name);
+
+  private git: SimpleGit | undefined;
 
   constructor(private readonly configService: ConfigService) {
     const contentDir = this.configService.get('content') as string;
-    this.git = simpleGit(contentDir);
+    if (existsSync(contentDir)) {
+      this.git = simpleGit(contentDir);
+    } else {
+      GitService.LOG.warn(
+        'Couldnt create simpleGit. Content directory doesnt exist',
+      );
+    }
   }
 
   /**
@@ -18,24 +26,30 @@ export class GitService {
    */
   update() {
     const contentDir = this.configService.get('content') as string;
-    if (readdirSync(contentDir).length === 0) {
+    if (this.git && readdirSync(contentDir).length === 0) {
+      GitService.LOG.log('Repository doesnt exist yet. Clonning...');
       this.clone();
     } else {
+      GitService.LOG.log('Pulling changes from reporitory...');
       this.pull();
     }
   }
 
   pull() {
-    if (this.configService.get('git') !== null) {
+    if (this.git && this.configService.get('git') !== null) {
       this.git.pull();
+    } else {
+      GitService.LOG.warn('Changes couldnt be pulled. Git config doesnt exist');
     }
   }
 
   clone() {
     const repo = this.configService.get('git');
 
-    if (repo !== null) {
+    if (this.git && repo !== null) {
       this.git.clone(repo, '.');
+    } else {
+      GitService.LOG.warn('Repo couldnt be cloned. Git config doesnt exist');
     }
   }
 }
