@@ -25,4 +25,10 @@ export type ArticleDTO = ArticleShortDTO & {
 export type ConfigCMS = {
   git: string | null;
   content: string | null;
+  geneartedcontentdir: string | null;
+};
+
+export type ImageResizeOptions = {
+  width?: number;
+  height?: number;
 };

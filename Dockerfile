@@ -3,6 +3,7 @@ FROM node:20
 WORKDIR /usr/src/app
 
 RUN mkdir -p /var/content
+RUN mkdir -p /var/generated
 RUN mkdir -p /etc/personal.cms.d
 
 COPY . .

@@ -4,8 +4,8 @@ import { ConfigCMS } from '../types';
 
 const DEFAULT_CONFIG: ConfigCMS = {
   git: null,
-  content:
-    process.env.NODE_ENV === 'development' ? './content' : '/var/content',
+  content: process.env.NODE_ENV === 'development' ? './content' : '/var/content',
+  geneartedcontentdir: process.env.NODE_ENV === 'development' ? './generated' : '/var/generated',
 };
 
 @Injectable()
