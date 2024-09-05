@@ -1,10 +1,4 @@
-import {
-  BadRequestException,
-  Controller,
-  Get,
-  Param,
-  Query,
-} from '@nestjs/common';
+import { BadRequestException, Controller, Get, Param, Query } from '@nestjs/common';
 import { ArticleDTO, ArticleShortDTO, Paginated } from '../types';
 import { DEFAULT_PAGE_SIZE } from '../contants';
 import { MarkdownService } from '../services/markdown.service';
@@ -12,10 +6,7 @@ import { ArticleService } from 'src/services/article.service';
 
 @Controller('/api/v1/articles')
 export class ArticleController {
-  constructor(
-    private readonly articleService: ArticleService,
-    private readonly markdownService: MarkdownService,
-  ) {}
+  constructor(private readonly articleService: ArticleService, private readonly markdownService: MarkdownService) {}
 
   @Get('/')
   getArticles(@Query('page') page: string): Paginated<ArticleShortDTO> {

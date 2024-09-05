@@ -6,8 +6,11 @@ export class MediaController {
   constructor(private readonly mediaService: MediaService) {}
 
   @Get('/:name')
-  getMediaByName(@Param('name') name: string, @Query('w') width, @Query('h') height): Buffer {
-    const media = this.mediaService.getMediaByName(name, { width: Number(width), height: Number(height) });
+  async getMediaByName(@Param('name') name: string, @Query('w') width, @Query('h') height): Promise<Buffer> {
+    const media = await this.mediaService.getMediaByName(name, {
+      width: width ? Number(width) : undefined,
+      height: height ? Number(height) : undefined,
+    });
 
     if (media === null) {
       throw new BadRequestException('Invalid media');

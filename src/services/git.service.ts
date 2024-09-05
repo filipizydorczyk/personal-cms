@@ -14,9 +14,7 @@ export class GitService {
     if (existsSync(contentDir)) {
       this.git = simpleGit(contentDir);
     } else {
-      GitService.LOG.warn(
-        'Couldnt create simpleGit. Content directory doesnt exist',
-      );
+      GitService.LOG.warn('Couldnt create simpleGit. Content directory doesnt exist');
     }
   }
 
