@@ -24,3 +24,8 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Flaws
+
+ - Not being able to put special caracters in name like `?` or `/`
+ - Having articles returned with unsorted order and no information on created and updated date
