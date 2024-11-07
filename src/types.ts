@@ -13,12 +13,12 @@ export type Paginated<T> = {
   content: T[];
 };
 
-export type ArticleShortDTO = {
+export type FeedShortDTO = {
   name: string;
   metadata: Record<string, any>;
 };
 
-export type ArticleDTO = ArticleShortDTO & {
+export type FeedDTO = FeedShortDTO & {
   content: string;
 };
 

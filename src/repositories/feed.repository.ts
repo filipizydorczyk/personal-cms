@@ -6,23 +6,21 @@ import { paginated } from '../utils';
 import { ConfigService } from '../services/config.service';
 
 @Injectable()
-export class ArticleRepository {
-  private contentDir: string;
+export class FeedRepository {
+  constructor(private readonly configService: ConfigService) {}
 
-  constructor(private readonly configService: ConfigService) {
-    this.contentDir = `${this.configService.get('content')}/articles`;
-  }
-
-  getArtciles(pagination: Page): Paginated<string> {
-    const files = readdirSync(this.contentDir)
+  getFeedByCategory(category: string, pagination: Page): Paginated<string> {
+    const contentDir = `${this.configService.get('content')}/${category}`;
+    const files = readdirSync(contentDir)
       .filter((file) => extname(file) === '.md')
       .map((file) => parse(file).name);
 
     return paginated(files, pagination);
   }
 
-  getArtcileByName(name: string): string | null {
-    const file = `${this.contentDir}/${name}.md`;
+  getFeedByName(category: string, name: string): string | null {
+    const contentDir = `${this.configService.get('content')}/${category}`;
+    const file = `${contentDir}/${name}.md`;
 
     if (existsSync(file)) {
       return readFileSync(file, 'utf-8');
@@ -31,8 +29,9 @@ export class ArticleRepository {
     return null;
   }
 
-  getMetadataByName(name: string): Record<string, any> | null {
-    const file = `${this.contentDir}/${name}.json`;
+  getMetadataByName(category: string, name: string): Record<string, any> | null {
+    const contentDir = `${this.configService.get('content')}/${category}`;
+    const file = `${contentDir}/${name}.json`;
 
     if (existsSync(file)) {
       const value = readFileSync(file, 'utf-8');
